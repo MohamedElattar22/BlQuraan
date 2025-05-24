@@ -21,3 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "BlQuraan"
 include(":app")
+include(":data")
+include(":domain")
