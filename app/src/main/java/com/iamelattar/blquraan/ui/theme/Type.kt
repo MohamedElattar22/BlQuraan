@@ -14,8 +14,7 @@ val provider = GoogleFont.Provider(
 )
 val mainFontFamily = FontFamily(
     Font(
-        googleFont = GoogleFont("Roboto"),
-        fontProvider = provider,
+        resId = R.font.ui_medium,
     )
 )
 val mcs0 = FontFamily(Font(R.font.mcs_0))

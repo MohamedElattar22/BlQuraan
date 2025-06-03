@@ -1,14 +1,14 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.kotlin.ksp)
     id("com.google.dagger.hilt.android")
     alias(libs.plugins.jetbrains.kotlin.serialization)
 }
 
 android {
     namespace = "com.iamelattar.data"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24

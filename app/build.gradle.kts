@@ -2,8 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.kotlin.ksp)
     id("com.google.dagger.hilt.android")
     alias(libs.plugins.jetbrains.kotlin.serialization)
 
@@ -13,12 +12,12 @@ plugins {
 
 android {
     namespace = "com.iamelattar.blquraan"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.iamelattar.blquraan"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -27,7 +26,12 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            // Enables code-related app optimization.
+            isMinifyEnabled = true
+
+            // Enables resource shrinking.
+            isShrinkResources = true
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -35,11 +39,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true

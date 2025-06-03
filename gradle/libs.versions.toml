@@ -1,9 +1,9 @@
 [versions]
-agp = "8.9.3"
+agp = "8.9.1"
 converterGson = "2.11.0"
 datastorePreferences = "1.1.7"
 gson = "2.13.0"
-hiltAndroid = "2.56.1"
+hiltAndroid = "2.56.2"
 kotlin = "2.1.20"
 coreKtx = "1.16.0"
 junit = "4.13.2"
@@ -25,6 +25,7 @@ nav3Material = "1.0.0-SNAPSHOT"
 nav3Lifecycle = "1.0.0-alpha01"
 kotlinSerialization = "2.1.21"
 kotlinxSerializationCore = "1.8.1"
+ksp = "2.1.20-1.0.32"
 
 
 
@@ -73,5 +74,5 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization"}
-
+kotlin-ksp = { id ="com.google.devtools.ksp", version.ref = "ksp" }
 
