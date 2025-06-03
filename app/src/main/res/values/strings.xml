@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">BlQuraan</string>
+    <string name="welcome_back">أهلاً بعودتك</string>
+    <string name="features">المميزات</string>
+    <string name="prayer_times">مواقيت الصلاة</string>
 </resources>

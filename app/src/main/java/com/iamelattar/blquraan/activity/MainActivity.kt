@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import com.iamelattar.blquraan.features.home.ui.screen.HomeScreen
 import com.iamelattar.blquraan.ui.theme.BlQuraanTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -14,7 +15,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BlQuraanTheme {
-
+                HomeScreen()
             }
         }
     }
