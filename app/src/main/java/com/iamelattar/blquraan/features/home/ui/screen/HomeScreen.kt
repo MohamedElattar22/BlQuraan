@@ -37,7 +37,6 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             TopAppBar()
         }
     ) { innerPadding->
-        CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
             Column(
                 modifier = modifier
                     .fillMaxSize()
@@ -87,6 +86,6 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                 Spacer(modifier = Modifier.height(5.dp))
             }
         }
-    }
+
 
 }
