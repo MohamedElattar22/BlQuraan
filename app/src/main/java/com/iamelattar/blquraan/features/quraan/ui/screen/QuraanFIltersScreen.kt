@@ -31,13 +31,17 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import androidx.navigation3.runtime.NavBackStack
 import com.iamelattar.blquraan.features.quraan.ui.composables.QuraanFiltersAppBar
 import com.iamelattar.blquraan.ui.theme.BlQuraanTheme
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun QuraanFiltersScreen(modifier: Modifier = Modifier) {
+fun QuraanFiltersScreen(
+    modifier: Modifier = Modifier,
+    backStack: NavBackStack
+) {
 
     val tabs = listOf("الأجزاء" , "السور")
     val pagerState = rememberPagerState(
@@ -52,7 +56,10 @@ fun QuraanFiltersScreen(modifier: Modifier = Modifier) {
             QuraanFiltersAppBar(
                 modifier = Modifier.statusBarsPadding(),
                 tabsList = tabs ,
-                pagerState = pagerState
+                pagerState = pagerState,
+                onBackClick = {
+                    backStack.removeLastOrNull()
+                }
             )
         }
 
@@ -78,11 +85,3 @@ fun QuraanFiltersScreen(modifier: Modifier = Modifier) {
 
 }
 
-@Preview(showSystemUi = true)
-@Composable
-private fun saas() {
-    BlQuraanTheme {
-        QuraanFiltersScreen()
-    }
-
-}

@@ -19,8 +19,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import androidx.navigation3.runtime.NavBackStack
 import com.iamelattar.blquraan.R
 import com.iamelattar.blquraan.features.home.ui.composables.AyahOfTheDay
 import com.iamelattar.blquraan.features.home.ui.composables.CurrentSurahProgress
@@ -28,9 +30,14 @@ import com.iamelattar.blquraan.features.home.ui.composables.FeaturesRow
 import com.iamelattar.blquraan.features.home.ui.composables.PrayerTimesTimeline
 import com.iamelattar.blquraan.features.home.ui.composables.TopAppBar
 import com.iamelattar.blquraan.features.home.viewmodel.contracts.PrayerTime
+import com.iamelattar.blquraan.navigation.QuraanScreenRoute
+import com.iamelattar.blquraan.ui.theme.BlQuraanTheme
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(
+    backStack: NavBackStack,
+    modifier: Modifier = Modifier
+) {
     Scaffold(
         containerColor = Color.Transparent,
         topBar = {
@@ -48,6 +55,9 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 
                 Spacer(modifier = Modifier.height(5.dp))
                 CurrentSurahProgress(
+                    onContinueClick = {
+
+                    },
                     modifier = Modifier.padding(horizontal = 10.dp)
                 )
 
@@ -60,7 +70,10 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                 )
 
                 FeaturesRow(
-                    modifier = Modifier.padding(horizontal = 10.dp)
+                    modifier = Modifier.padding(horizontal = 10.dp),
+                    onClick = {
+                            backStack.add(QuraanScreenRoute)
+                    }
                 )
 
                 AyahOfTheDay(modifier = Modifier.padding(horizontal = 10.dp))

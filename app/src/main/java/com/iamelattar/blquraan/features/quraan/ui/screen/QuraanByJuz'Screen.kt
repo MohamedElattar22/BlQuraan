@@ -7,7 +7,7 @@ import com.iamelattar.blquraan.features.quraan.ui.composables.JuzListItem
 import com.iamelattar.blquraan.features.quraan.ui.composables.SurahListItem
 
 @Composable
-fun QuraanByJuzScreen(modifier: Modifier = Modifier) {
+ fun QuraanByJuzScreen(modifier: Modifier = Modifier) {
     LazyColumn (
         modifier = modifier
     ){

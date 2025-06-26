@@ -3,6 +3,7 @@ package com.iamelattar.blquraan.features.home.ui.composables
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,49 +26,38 @@ import com.iamelattar.blquraan.R
 import com.iamelattar.blquraan.ui.theme.BlQuraanTheme
 
 @Composable
-fun FeaturesRow(modifier: Modifier = Modifier) {
+fun FeaturesRow(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit ={}
+) {
     Row(
         modifier = modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         FeatureButton(
+            onClick = {
+                onClick()
+            },
             featureName = "المصحف",
             featureIconRes = R.drawable.quran
         )
-
-        FeatureButton(
-            featureName = "المصحف",
-            featureIconRes = R.drawable.quran
-        )
-
-        FeatureButton(
-            featureName = "المصحف",
-            featureIconRes = R.drawable.quran
-        )
-        FeatureButton(
-            featureName = "المصحف",
-            featureIconRes = R.drawable.quran
-        )
-        FeatureButton(
-            featureName = "المصحف",
-            featureIconRes = R.drawable.quran
-        )
-
     }
-
 
 }
 
 @Composable
 fun FeatureButton(
+    modifier: Modifier = Modifier,
+    onClick : ()-> Unit = {},
     featureName: String,
-    featureIconRes: Int,
-    modifier: Modifier = Modifier
+    featureIconRes: Int
 ) {
 
     Column(
-        modifier = modifier,
+        modifier = modifier.clickable{
+            onClick()
+        },
         verticalArrangement = Arrangement.spacedBy(2.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

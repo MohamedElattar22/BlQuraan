@@ -30,7 +30,10 @@ import com.iamelattar.blquraan.R
 import com.iamelattar.blquraan.ui.theme.BlQuraanTheme
 
 @Composable
-fun CurrentSurahProgress(modifier: Modifier = Modifier) {
+fun CurrentSurahProgress(
+    modifier: Modifier = Modifier,
+    onContinueClick:()->Unit,
+) {
     Box (
         modifier = modifier
             .fillMaxWidth()
@@ -80,7 +83,7 @@ fun CurrentSurahProgress(modifier: Modifier = Modifier) {
                 Spacer(modifier = Modifier.width(5.dp))
 
                 Text(
-                    "صفحة رفم",
+                    "صفحة رقم",
                     fontWeight = FontWeight.Thin,
                     color = Color.White
                 )
@@ -96,7 +99,7 @@ fun CurrentSurahProgress(modifier: Modifier = Modifier) {
                         shape = RoundedCornerShape(6.dp)
                     )
                     .clickable{
-
+                        onContinueClick()
                 }
             ){
                 Text(
@@ -116,10 +119,3 @@ fun CurrentSurahProgress(modifier: Modifier = Modifier) {
 
 }
 
-@Preview
-@Composable
-private fun CurrentPR() {
-    BlQuraanTheme {
-        CurrentSurahProgress()
-    }
-}

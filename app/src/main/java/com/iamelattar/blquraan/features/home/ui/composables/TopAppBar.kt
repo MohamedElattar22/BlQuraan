@@ -81,19 +81,10 @@ fun TopAppBar(modifier: Modifier = Modifier) {
                 .padding(15.dp)
                 .align(Alignment.BottomStart),
         ) {
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
-                Spacer(Modifier.height(15.dp))
-                Image(
 
-                    imageVector = ImageVector.vectorResource(R.drawable.logo),
-                    contentDescription = "sa"
-                )
-            }
 
             Column(
-                horizontalAlignment = Alignment.End,
+                horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.spacedBy(3.dp)
 
             ) {
@@ -113,7 +104,17 @@ fun TopAppBar(modifier: Modifier = Modifier) {
                     iconResourceId = R.drawable.prayer
                 )
             }
+            Column(
+                modifier = Modifier.weight(1f) ,
+                horizontalAlignment = Alignment.End,
+            ) {
+                Spacer(Modifier.height(15.dp))
+                Image(
 
+                    imageVector = ImageVector.vectorResource(R.drawable.logo),
+                    contentDescription = "sa"
+                )
+            }
         }
 
 
