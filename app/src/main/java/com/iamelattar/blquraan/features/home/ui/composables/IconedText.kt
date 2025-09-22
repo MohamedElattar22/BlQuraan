@@ -17,28 +17,26 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun IconText(
-    text: String ,
-    iconResourceId : Int,
+    text: String,
+    iconResourceId: Int,
     modifier: Modifier = Modifier,
 ) {
-    Row (
+    Row(
         modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy (5.dp),
+        horizontalArrangement = Arrangement.spacedBy(5.dp),
         verticalAlignment = Alignment.CenterVertically
-    ){
-
-        Text(
-            color = Color(0xff7B7973) ,
-            text = text,
-            style = MaterialTheme.typography.labelMedium,
-            fontWeight = FontWeight.Bold
-        )
+    ) {
         Icon(
             modifier = Modifier.size(14.dp),
             imageVector = ImageVector.vectorResource(iconResourceId),
             tint = Color(0xffB6704E),
             contentDescription = "iconDescription"
         )
+        Text(
+            color = Color(0xff7B7973),
+            text = text,
+            style = MaterialTheme.typography.labelMedium,
+            fontWeight = FontWeight.Bold
+        )
     }
-
 }
