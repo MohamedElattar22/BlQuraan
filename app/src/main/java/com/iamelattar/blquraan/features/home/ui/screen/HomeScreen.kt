@@ -13,28 +13,36 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.iamelattar.blquraan.R
 import com.iamelattar.blquraan.features.home.ui.composables.AyahOfTheDay
 import com.iamelattar.blquraan.features.home.ui.composables.CurrentSurahProgress
 import com.iamelattar.blquraan.features.home.ui.composables.FeaturesRow
 import com.iamelattar.blquraan.features.home.ui.composables.PrayerTimesTimeline
 import com.iamelattar.blquraan.features.home.ui.composables.TopAppBar
-import com.iamelattar.blquraan.features.home.viewmodel.contracts.PrayerTime
+import com.iamelattar.blquraan.features.home.viewmodel.contracts.HomeScreenAction.OnFeatureClick
+import com.iamelattar.blquraan.features.home.viewmodel.contracts.HomeViewModel
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen  (modifier: Modifier = Modifier,
+                 viewModel: HomeViewModel = hiltViewModel() ) {
+    val state = viewModel.state.collectAsState()
     Scaffold(
         containerColor = Color.Transparent,
         topBar = {
-            TopAppBar()
+            TopAppBar(
+                modifier = Modifier,
+                hijriDate = state.value.hijriDate,
+                hoursUntilNextPrayer = state.value.hoursUntilNextPrayer,
+                minutesUntilNextPrayer = state.value.minutesUntilNextPrayer,
+                nextPrayerName = state.value.nextPrayerName
+            )
         }
     ) { innerPadding->
             Column(
@@ -48,7 +56,9 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 
                 Spacer(modifier = Modifier.height(5.dp))
                 CurrentSurahProgress(
-                    modifier = Modifier.padding(horizontal = 10.dp)
+                    modifier = Modifier.padding(horizontal = 10.dp),
+                    souraName = state.value.currentSurah,
+                    pageNumber = state.value.currentPage
                 )
 
                 Text(
@@ -60,19 +70,15 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                 )
 
                 FeaturesRow(
-                    modifier = Modifier.padding(horizontal = 10.dp)
+                    modifier = Modifier.padding(horizontal = 10.dp),
+                    onFeatureClick = { feature ->viewModel.onAction(OnFeatureClick(feature))}
                 )
 
-                AyahOfTheDay(modifier = Modifier.padding(horizontal = 10.dp))
-
-                val samplePrayerTimes = listOf(
-                    PrayerTime("الفجر", "Fajr", "5:15", "🌙", isPassed = true),
-                    PrayerTime("الشروق", "Sunrise", "6:44", "🌅", isPassed = true),
-                    PrayerTime("الظهر", "Dhuhr", "12:53", "☀️", isPassed = true),
-                    PrayerTime("العصر", "Asr", "4:22", "☀️", isActive = true),
-                    PrayerTime("المغرب", "Maghrib", "7:01", "🌅"),
-                    PrayerTime("العشاء", "Isha", "8:20", "🌙")
+                AyahOfTheDay(modifier = Modifier.padding(horizontal = 10.dp),
+                    souraOfTheDay = state.value.surahOfTheDay,
+                    ayahText = state.value.ayahOfTheDay
                 )
+
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -81,7 +87,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                     fontWeight = FontWeight.Bold
                 )
 
-                PrayerTimesTimeline(prayerTimes = samplePrayerTimes)
+                PrayerTimesTimeline(prayerTimes = state.value.prayerTimes)
 
                 Spacer(modifier = Modifier.height(5.dp))
             }

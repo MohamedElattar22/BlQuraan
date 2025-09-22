@@ -23,18 +23,21 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.iamelattar.blquraan.R
 import com.iamelattar.blquraan.ui.theme.BlQuraanTheme
 
 @Composable
-fun CurrentSurahProgress(modifier: Modifier = Modifier) {
+fun CurrentSurahProgress(modifier: Modifier = Modifier,souraName:String,pageNumber:String) {
     Box (
         modifier = modifier
             .fillMaxWidth()
-            .height(120.dp)
+            .height(125.dp)
            .clip(
                 shape = RoundedCornerShape(10.dp)
             )
@@ -57,40 +60,49 @@ fun CurrentSurahProgress(modifier: Modifier = Modifier) {
                 color = Color.White
             )
             Row {
+
                 Text(
-                    "سورة البقرة",
-                    color = Color(0xff02B9BD)
+                    text = "توقفت عند",
+                    color = Color(0xB3FFFFFF),
+                    fontWeight = FontWeight.ExtraLight,
+                    fontSize = 14.sp,
+                    modifier = Modifier.alignByBaseline()
                 )
 
                 Spacer(modifier = Modifier.width(5.dp))
 
                 Text(
-                    "توقفت عند",
-                    fontWeight = FontWeight.Thin,
-                    color = Color.White
+                    "سورة ${souraName}",
+                    color = Color(0xff02B9BD),
+                    modifier = Modifier.alignByBaseline()
                 )
-
             }
+
             Row {
                 Text(
-                    "20",
-                    color = Color(0xff02B9BD)
+                    "صفحة رقم",
+                    color = Color(0xB3FFFFFF),
+                    fontWeight = FontWeight.ExtraLight,
+                    fontSize = 14.sp,
+                    modifier = Modifier.alignByBaseline()
                 )
 
                 Spacer(modifier = Modifier.width(5.dp))
 
                 Text(
-                    "صفحة رفم",
-                    fontWeight = FontWeight.Thin,
-                    color = Color.White
+                    pageNumber,
+                    color = Color(0xff02B9BD),
+                    modifier = Modifier.alignByBaseline()
                 )
 
             }
+
             Spacer(modifier = Modifier.height(5.dp))
+
             Box(
                 modifier = Modifier
                     .width(115.dp)
-                    .height(26.dp)
+                    .height(30.dp)
                     .background(
                         color = Color.White,
                         shape = RoundedCornerShape(6.dp)
@@ -120,6 +132,6 @@ fun CurrentSurahProgress(modifier: Modifier = Modifier) {
 @Composable
 private fun CurrentPR() {
     BlQuraanTheme {
-        CurrentSurahProgress()
+        //CurrentSurahProgress()
     }
 }

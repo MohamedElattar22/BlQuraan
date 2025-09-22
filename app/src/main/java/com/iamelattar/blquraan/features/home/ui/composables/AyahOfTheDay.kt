@@ -32,11 +32,11 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun AyahOfTheDay(modifier: Modifier = Modifier) {
+fun AyahOfTheDay(modifier: Modifier = Modifier,souraOfTheDay:String,ayahText:String) {
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(185.dp)
+            .height(190.dp)
             .background(
                 color = Color(0xffE7EFF2),
                 shape = RoundedCornerShape(14.dp)
@@ -45,7 +45,7 @@ fun AyahOfTheDay(modifier: Modifier = Modifier) {
                 width = 1.dp,
                 color = Color(0x33187072),
                 shape = RoundedCornerShape(14.dp)
-            )
+            ).padding(bottom = 10.dp)
     ) {
         Column (
             verticalArrangement = Arrangement.spacedBy(5.dp)
@@ -54,16 +54,17 @@ fun AyahOfTheDay(modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(10.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            )
+            {
                 Text(
-                    modifier = Modifier.weight(1f),
-                    text = "سورة يونس",
+                    "آية اليوم",
                     color = Color(0xff398E71)
                 )
 
                 Text(
-                    "آية اليوم",
+                    text = "سورة ${souraOfTheDay}",
                     color = Color(0xff398E71)
                 )
 
@@ -71,7 +72,7 @@ fun AyahOfTheDay(modifier: Modifier = Modifier) {
 
             Text(
                 modifier = Modifier.padding(horizontal =  10.dp),
-                text = "وَإِذَا مَسَّ الْإِنسَانَ الضُّرُّ دَعَانَا لِجَنبِهِ أَوْ قَاعِدًا أَوْ قَائِمًا فَلَمَّا كَشَفْنَا عَنْهُ ضُرَّهُ مَرَّ كَأَن لَّمْ يَدْعُنَا إِلَىٰ ضُرٍّ مَّسَّهُ ۚ كَذَٰلِكَ زُيِّنَ لِلْمُسْرِفِينَ مَا كَانُوا يَعْمَلُونَ",
+                text = ayahText,
                 fontFamily = FontFamily(
                     Font(R.font.uthmanic_hafs)
                 ),
@@ -88,7 +89,7 @@ fun AyahOfTheDay(modifier: Modifier = Modifier) {
                     width = 1.dp ,
                     color = Color(0xff398E71)
                 ),
-                modifier = Modifier.fillMaxWidth().padding(horizontal =  10.dp),
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 10.dp),
                 shape = RoundedCornerShape(10.dp)
             ) {
 
@@ -102,7 +103,6 @@ fun AyahOfTheDay(modifier: Modifier = Modifier) {
                     contentDescription = "copy",
                     tint = Color(0xff398E71)
                 )
-
 
 
             }
@@ -119,7 +119,7 @@ fun AyahOfTheDay(modifier: Modifier = Modifier) {
 @Composable
 private fun AyahOfTheDayPrev() {
     BlQuraanTheme {
-        AyahOfTheDay()
+     //   AyahOfTheDay()
     }
 
 }

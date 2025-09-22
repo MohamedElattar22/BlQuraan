@@ -27,18 +27,19 @@ fun IconText(
         verticalAlignment = Alignment.CenterVertically
     ){
 
-        Text(
-            color = Color(0xff7B7973) ,
-            text = text,
-            style = MaterialTheme.typography.labelMedium,
-            fontWeight = FontWeight.Bold
-        )
         Icon(
             modifier = Modifier.size(14.dp),
             imageVector = ImageVector.vectorResource(iconResourceId),
             tint = Color(0xffB6704E),
             contentDescription = "iconDescription"
         )
+        Text(
+            color = Color(0xff7B7973) ,
+            text = text,
+            style = MaterialTheme.typography.labelMedium,
+            fontWeight = FontWeight.Bold
+        )
+
     }
 
 }

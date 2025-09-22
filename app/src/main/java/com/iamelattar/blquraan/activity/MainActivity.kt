@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             BlQuraanTheme {
                 CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
-                    QuraanFiltersScreen()
+                      HomeScreen()
                 }
             }
         }

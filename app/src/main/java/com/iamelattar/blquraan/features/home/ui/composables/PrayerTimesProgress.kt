@@ -239,7 +239,7 @@ private fun PrayerContent(
 ) {
     Card(
         shape = RoundedCornerShape(7.dp),
-        modifier = modifier.height(38.dp),
+        modifier = modifier.height(42.dp),
         colors = CardDefaults.cardColors(
             containerColor = if (prayer.isActive)
                 Color(0xFF187072)

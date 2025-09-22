@@ -37,7 +37,7 @@ import com.iamelattar.blquraan.R
 import com.iamelattar.blquraan.ui.theme.BlQuraanTheme
 
 @Composable
-fun TopAppBar(modifier: Modifier = Modifier) {
+fun TopAppBar(modifier: Modifier = Modifier,hijriDate: String ="الثلاثاء , 4 صفر 1446",hoursUntilNextPrayer: String="3",minutesUntilNextPrayer: String = "27", nextPrayerName: String = "العصر") {
 
 
     Box(
@@ -80,20 +80,11 @@ fun TopAppBar(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .padding(15.dp)
                 .align(Alignment.BottomStart),
+
         ) {
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
-                Spacer(Modifier.height(15.dp))
-                Image(
-
-                    imageVector = ImageVector.vectorResource(R.drawable.logo),
-                    contentDescription = "sa"
-                )
-            }
 
             Column(
-                horizontalAlignment = Alignment.End,
+                horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.spacedBy(3.dp)
 
             ) {
@@ -104,15 +95,31 @@ fun TopAppBar(modifier: Modifier = Modifier) {
                 )
 
                 IconText(
-                    text = "الثلاثاء , 4 صفر 1446",
+                    text = hijriDate,
                     iconResourceId = R.drawable.calender
                 )
 
                 IconText(
-                    text = "صلاة العصر بعد 3 ساعات و 27 دقيقة",
+                    text = "صلاة ${nextPrayerName} بعد ${hoursUntilNextPrayer} ساعات و ${minutesUntilNextPrayer} دقيقة",
                     iconResourceId = R.drawable.prayer
                 )
             }
+
+
+            Column(
+                modifier = Modifier.weight(1f),
+                        horizontalAlignment = Alignment.End,
+
+                ) {
+                Spacer(Modifier.height(15.dp))
+                Image(
+
+                    imageVector = ImageVector.vectorResource(R.drawable.logo),
+                    contentDescription = "sa"
+                )
+            }
+
+
 
         }
 
