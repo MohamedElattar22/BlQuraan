@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -22,17 +21,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import com.iamelattar.blquraan.R
-import com.iamelattar.blquraan.ui.theme.BlQuraanTheme
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.iamelattar.blquraan.R
+import com.iamelattar.blquraan.ui.theme.BlQuraanTheme
 
 @Composable
-fun AyahOfTheDay(modifier: Modifier = Modifier,souraOfTheDay:String,ayahText:String) {
+fun AyahOfTheDay(
+    souraOfTheDay: String,
+    ayahText: String,
+    modifier: Modifier = Modifier
+) {
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -45,81 +47,60 @@ fun AyahOfTheDay(modifier: Modifier = Modifier,souraOfTheDay:String,ayahText:Str
                 width = 1.dp,
                 color = Color(0x33187072),
                 shape = RoundedCornerShape(14.dp)
-            ).padding(bottom = 10.dp)
+            )
+            .padding(bottom = 10.dp)
     ) {
-        Column (
+        Column(
             verticalArrangement = Arrangement.spacedBy(5.dp)
-        ){
+        ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(10.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
-            )
-            {
+            ) {
                 Text(
                     "آية اليوم",
                     color = Color(0xff398E71)
                 )
 
                 Text(
-                    text = "سورة ${souraOfTheDay}",
+                    text = " سورة ${souraOfTheDay}",
                     color = Color(0xff398E71)
                 )
-
             }
-
             Text(
-                modifier = Modifier.padding(horizontal =  10.dp),
+                modifier = Modifier.padding(horizontal = 10.dp),
                 text = ayahText,
                 fontFamily = FontFamily(
-                    Font(R.font.uthmanic_hafs)
+                    Font(R.font.uthmanic_hafs) //Theme.typography.font
                 ),
                 lineHeight = 24.sp,
                 textAlign = TextAlign.Center,
                 fontSize = 18.sp
             )
-
             OutlinedButton(
-                onClick = {
-
-                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 10.dp),
+                onClick = {},
                 border = BorderStroke(
-                    width = 1.dp ,
+                    width = 1.dp,
                     color = Color(0xff398E71)
                 ),
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 10.dp),
                 shape = RoundedCornerShape(10.dp)
             ) {
-
                 Text(
                     "نسخ الآية",
                     color = Color(0xff398E71)
                 )
-
                 Icon(
                     imageVector = ImageVector.vectorResource(R.drawable.solar_copy),
                     contentDescription = "copy",
                     tint = Color(0xff398E71)
                 )
-
-
             }
-
-
         }
-
-
     }
-
-}
-
-@PreviewLightDark
-@Composable
-private fun AyahOfTheDayPrev() {
-    BlQuraanTheme {
-     //   AyahOfTheDay()
-    }
-
 }

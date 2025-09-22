@@ -1,4 +1,4 @@
-package com.iamelattar.blquraan.features.home.viewmodel.contracts
+package com.iamelattar.blquraan.features.home.utils
 
 data class PrayerTime(
     val nameArabic: String,

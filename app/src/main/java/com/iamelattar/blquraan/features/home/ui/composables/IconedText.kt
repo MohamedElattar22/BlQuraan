@@ -26,7 +26,6 @@ fun IconText(
         horizontalArrangement = Arrangement.spacedBy (5.dp),
         verticalAlignment = Alignment.CenterVertically
     ){
-
         Icon(
             modifier = Modifier.size(14.dp),
             imageVector = ImageVector.vectorResource(iconResourceId),
@@ -39,7 +38,5 @@ fun IconText(
             style = MaterialTheme.typography.labelMedium,
             fontWeight = FontWeight.Bold
         )
-
     }
-
 }

@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,8 +22,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -33,15 +30,13 @@ import com.iamelattar.blquraan.R
 import com.iamelattar.blquraan.ui.theme.BlQuraanTheme
 
 @Composable
-fun CurrentSurahProgress(modifier: Modifier = Modifier,souraName:String,pageNumber:String) {
-    Box (
+fun CurrentSurahProgress(modifier: Modifier = Modifier, souraName: String, pageNumber: String) {
+    Box(
         modifier = modifier
             .fillMaxWidth()
             .height(125.dp)
-           .clip(
-                shape = RoundedCornerShape(10.dp)
-            )
-    ){
+            .clip(RoundedCornerShape(10.dp))
+    ) {
         Image(
             modifier = Modifier
                 .fillMaxSize(),
@@ -60,7 +55,6 @@ fun CurrentSurahProgress(modifier: Modifier = Modifier,souraName:String,pageNumb
                 color = Color.White
             )
             Row {
-
                 Text(
                     text = "توقفت عند",
                     color = Color(0xB3FFFFFF),
@@ -86,19 +80,16 @@ fun CurrentSurahProgress(modifier: Modifier = Modifier,souraName:String,pageNumb
                     fontSize = 14.sp,
                     modifier = Modifier.alignByBaseline()
                 )
-
                 Spacer(modifier = Modifier.width(5.dp))
-
                 Text(
                     pageNumber,
                     color = Color(0xff02B9BD),
                     modifier = Modifier.alignByBaseline()
                 )
-
             }
 
             Spacer(modifier = Modifier.height(5.dp))
-
+            //Icon - Image
             Box(
                 modifier = Modifier
                     .width(115.dp)
@@ -107,31 +98,14 @@ fun CurrentSurahProgress(modifier: Modifier = Modifier,souraName:String,pageNumb
                         color = Color.White,
                         shape = RoundedCornerShape(6.dp)
                     )
-                    .clickable{
-
-                }
-            ){
+                    .clickable {}
+            ) {
                 Text(
                     modifier = Modifier.align(Alignment.Center),
-                  text =   "المتابعة",
+                    text = "المتابعة",
                     style = MaterialTheme.typography.labelSmall
                 )
-
             }
-
         }
-
-
-
-    }
-
-
-}
-
-@Preview
-@Composable
-private fun CurrentPR() {
-    BlQuraanTheme {
-        //CurrentSurahProgress()
     }
 }
