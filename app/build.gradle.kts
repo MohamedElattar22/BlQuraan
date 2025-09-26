@@ -7,7 +7,6 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.serialization)
 
 
-
 }
 
 android {
@@ -87,6 +86,7 @@ dependencies {
 
     // gson
     implementation(libs.gson)
-
+    // kotlin serialization
+    implementation(libs.kotlinx.serialization.json)
 
 }

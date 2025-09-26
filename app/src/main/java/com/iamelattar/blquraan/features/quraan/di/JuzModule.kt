@@ -1,21 +1,20 @@
 package com.iamelattar.blquraan.features.quraan.di
 
-import android.content.Context
-import com.iamelattar.blquraan.features.quraan.data.JuzRepoImpl
-import com.iamelattar.blquraan.features.quraan.domain.JuzRepo
+import com.iamelattar.blquraan.features.quraan.utils.AssetReader
+import com.iamelattar.blquraan.features.quraan.data.JuzRepositoryImpl
+import com.iamelattar.blquraan.features.quraan.domain.JuzRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
-import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 object JuzModule {
 
     @Provides
     fun provideJuzRepository(
-        @ApplicationContext context: Context
-    ): JuzRepo = JuzRepoImpl(context)
+        assetReader: AssetReader
+    ): JuzRepository = JuzRepositoryImpl(assetReader)
 
 }

@@ -2,7 +2,7 @@ package com.iamelattar.blquraan.features.quraan.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.iamelattar.blquraan.features.quraan.domain.SurahRepo
+import com.iamelattar.blquraan.features.quraan.domain.SurahRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,14 +12,16 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SurahViewModel @Inject constructor(
-    private val surahRepo: SurahRepo
+    private val surahRepository: SurahRepository
 ) : ViewModel() {
-    private val _state = MutableStateFlow<SurahScreenState>(SurahScreenState.Loading)
+    private val _state = MutableStateFlow(SurahScreenState())
     val state: StateFlow<SurahScreenState> = _state
     private val intentFlow = MutableSharedFlow<SurahScreenAction>()
 
+
     init {
         handleAction()
+        sendAction(SurahScreenAction.LoadSurahes)
     }
 
     fun sendAction(action: SurahScreenAction) =
@@ -41,21 +43,24 @@ class SurahViewModel @Inject constructor(
     }
 
     private fun loadSurahes() = viewModelScope.launch {
-        _state.value = SurahScreenState.Loading
-        try {
-            val result = surahRepo.getAllSurahes()
+        _state.value = _state.value.copy(isLoading = true, error = null)
+        runCatching {
+            val result = surahRepository.getAllSurahes()
             _state.value = result.fold(
-                onSuccess = { SurahScreenState.Success(it) },
-                onFailure = { SurahScreenState.Error(it.message ?: "Error loading data") }
+                onSuccess = {
+                    _state.value.copy(
+                        isLoading = false,
+                        surahList = it,
+                        error = null
+                    )
+                },
+                onFailure = {
+                    _state.value.copy(
+                        isLoading = false,
+                        error = it.message ?: "Unexpected error"
+                    )
+                }
             )
-        } catch (e: Exception) {
-            _state.value = SurahScreenState.Error(e.message ?: "Unknown Error")
         }
-
-
     }
 }
-
-
-
-
