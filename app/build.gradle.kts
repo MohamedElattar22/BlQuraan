@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.serialization)
 
 
+
 }
 
 android {
@@ -76,7 +77,6 @@ dependencies {
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
-    implementation(libs.hilt.navigation.compose)
 
     implementation(libs.androidx.datastore.preferences)
 
@@ -84,9 +84,5 @@ dependencies {
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.androidx.navigation3.ui)
 
-    // gson
-    implementation(libs.gson)
-    // kotlin serialization
-    implementation(libs.kotlinx.serialization.json)
 
 }
