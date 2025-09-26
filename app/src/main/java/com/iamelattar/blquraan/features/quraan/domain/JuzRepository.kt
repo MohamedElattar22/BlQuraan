@@ -1,5 +1,5 @@
 package com.iamelattar.blquraan.features.quraan.domain
 
-interface JuzRepo {
+interface JuzRepository {
     suspend fun getAllJuzs(): Result<List<Juz>>
 }

@@ -2,8 +2,9 @@ package com.iamelattar.blquraan.features.quraan.viewmodel
 
 import com.iamelattar.blquraan.features.quraan.domain.Surah
 
-sealed class SurahScreenState {
-    object Loading : SurahScreenState()
-    data class Success(val surahList: List<Surah>) : SurahScreenState()
-    data class Error(val message: String) : SurahScreenState()
-}
+data class SurahScreenState(
+    val surahList: List<Surah> = emptyList(),
+    val isLoading: Boolean = false,
+    val error: String? = null,
+    val selectedSurah: Surah? = null
+)

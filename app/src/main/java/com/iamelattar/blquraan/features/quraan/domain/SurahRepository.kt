@@ -1,6 +1,6 @@
 package com.iamelattar.blquraan.features.quraan.domain
 
-interface SurahRepo {
+interface SurahRepository {
     // add abstraction
     suspend fun getAllSurahes(): Result<List<Surah>>
 

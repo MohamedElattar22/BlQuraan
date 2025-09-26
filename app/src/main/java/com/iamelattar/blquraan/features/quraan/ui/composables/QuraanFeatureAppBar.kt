@@ -45,21 +45,20 @@ fun QuraanFiltersAppBar(
                     modifier = Modifier
                         .size(45.dp)
                         .padding(8.dp)
-                        .border(width = 1.dp, color = MainColor, shape = RoundedCornerShape(6.dp)),
+                        .border(
+                            width = 1.dp,
+                            color = MainColor,
+                            shape = RoundedCornerShape(6.dp)
+                        ),
                     contentAlignment = Alignment.Center
-
                 ) {
                     Icon(
-                        modifier = Modifier
-                            .size(16.dp),
+                        modifier = Modifier.size(16.dp),
                         imageVector = ImageVector.vectorResource(R.drawable.ic_arrow_back),
                         tint = MainColor,
                         contentDescription = "",
-
-                        )
+                    )
                 }
-
-
             },
             title = {
                 Text(

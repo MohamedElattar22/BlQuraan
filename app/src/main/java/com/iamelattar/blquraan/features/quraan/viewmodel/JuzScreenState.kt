@@ -2,8 +2,9 @@ package com.iamelattar.blquraan.features.quraan.viewmodel
 
 import com.iamelattar.blquraan.features.quraan.domain.Juz
 
-sealed class JuzScreenState {
-    object Loading : JuzScreenState()
-    data class Success(val juzList: List<Juz>) : JuzScreenState()
-    data class Error(val message: String) : JuzScreenState()
-}
+data class JuzScreenState(
+    val juzList: List<Juz> = emptyList(),
+    val isLoading: Boolean = false,
+    val error: String? = null,
+    val selectedJuz: Juz? = null
+)

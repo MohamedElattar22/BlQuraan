@@ -12,56 +12,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.iamelattar.blquraan.features.quraan.domain.Juz
 
 @Composable
 fun JuzListItem(
-    modifier: Modifier = Modifier, juz: Juz
-
+    juz: Juz,
+    modifier: Modifier = Modifier
 ) {
-//    ListItem(
-//        modifier = modifier
-//            .padding(5.dp)
-//            .clip(RoundedCornerShape(10.dp)),
-//        colors = ListItemDefaults.colors(
-//            containerColor = Color(0xffE7EAEA)
-//        ),
-//        headlineContent = {
-//            Text(
-//                text =  "الجزء الأول",
-//                color = Color(0xff187072)
-//            )
-//        },
-//
-//        leadingContent = {
-//            Box(
-//                modifier = Modifier.size(40.dp).clip(
-//                    CircleShape
-//                )
-//
-//            ) {
-//                Image(
-//                    modifier = Modifier.align(Alignment.Center) ,
-//                    imageVector = ImageVector.vectorResource(R.drawable.surah_number_ic),
-//                    contentDescription = ""
-//                )
-//                Text(
-//                    text =  "1" ,
-//                    color = Color(0xff187072) ,
-//                    modifier = Modifier.align(Alignment.Center)
-//
-//                )
-//
-//            }
-//        }
-//    )
-
     Row(
         modifier = modifier
-            .padding(5.dp)
             .fillMaxWidth()
+            .padding(5.dp)
             .clip(RoundedCornerShape(10.dp))
             .background(Color(0xFFE7EAEA))
             .padding(12.dp),
@@ -69,15 +32,9 @@ fun JuzListItem(
         horizontalArrangement = Arrangement.Center
     ) {
         Text(
-            text = juz.name, color = Color(0xff187072)
+            text = juz.name,
+            color = Color(0xff187072),
+            fontSize = 14.sp
         )
     }
-
-
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//private fun JuzListItemPreview() {
-//    JuzListItem()
-//}
