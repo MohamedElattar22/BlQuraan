@@ -5,8 +5,6 @@ plugins {
     alias(libs.plugins.kotlin.ksp)
     id("com.google.dagger.hilt.android")
     alias(libs.plugins.jetbrains.kotlin.serialization)
-
-
 }
 
 android {
