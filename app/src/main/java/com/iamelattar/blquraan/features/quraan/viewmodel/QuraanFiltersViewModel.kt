@@ -6,8 +6,4 @@ import jakarta.inject.Inject
 
 @HiltViewModel
 class QuraanFiltersViewModel @Inject constructor(): ViewModel() {
-
-
-
-
 }
