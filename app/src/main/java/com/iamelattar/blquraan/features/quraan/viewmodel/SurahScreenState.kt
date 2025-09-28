@@ -1,6 +1,6 @@
 package com.iamelattar.blquraan.features.quraan.viewmodel
 
-import com.iamelattar.blquraan.features.quraan.domain.Surah
+import com.iamelattar.blquraan.features.quraan.domain.entities.Surah
 
 data class SurahScreenState(
     val surahList: List<Surah> = emptyList(),

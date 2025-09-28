@@ -2,7 +2,7 @@ package com.iamelattar.blquraan.features.quraan.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.iamelattar.blquraan.features.quraan.domain.SurahRepository
+import com.iamelattar.blquraan.features.quraan.domain.usecases.GetAllSurahesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SurahViewModel @Inject constructor(
-    private val surahRepository: SurahRepository
+    private val getAllSurahesUseCase: GetAllSurahesUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(SurahScreenState())
     val state: StateFlow<SurahScreenState> = _state
@@ -44,23 +44,20 @@ class SurahViewModel @Inject constructor(
 
     private fun loadSurahes() = viewModelScope.launch {
         _state.value = _state.value.copy(isLoading = true, error = null)
-        runCatching {
-            val result = surahRepository.getAllSurahes()
-            _state.value = result.fold(
-                onSuccess = {
-                    _state.value.copy(
-                        isLoading = false,
-                        surahList = it,
-                        error = null
-                    )
-                },
-                onFailure = {
-                    _state.value.copy(
-                        isLoading = false,
-                        error = it.message ?: "Unexpected error"
-                    )
-                }
-            )
-        }
+        val result = getAllSurahesUseCase()
+        _state.value = result.fold(
+            onSuccess = {
+                _state.value.copy(
+                    isLoading = false,
+                    surahList = it, error = null
+                )
+            },
+            onFailure = {
+                _state.value.copy(
+                    isLoading = false,
+                    error = it.message ?: "Unexpected error"
+                )
+            }
+        )
     }
 }

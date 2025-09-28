@@ -22,7 +22,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iamelattar.blquraan.R
-import com.iamelattar.blquraan.features.quraan.domain.Surah
+import com.iamelattar.blquraan.features.quraan.domain.entities.Surah
 import com.iamelattar.blquraan.ui.theme.SecondaryColor
 
 @Composable

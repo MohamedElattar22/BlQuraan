@@ -17,18 +17,18 @@ fun QuraanByJuzScreen(
     viewModel: JuzViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-    when {
-        state.isLoading -> {
-            Text("Loading...")
+    LazyColumn(modifier = modifier) {
+        if (state.isLoading) {
+            item {
+                Text("Loading...")
+            }
         }
-        state.error != null -> {
-            Text("Error: ${state.error}")
+        items(state.juzList) { juz ->
+            JuzListItem(juz = juz, modifier = Modifier)
         }
-        else -> {
-            LazyColumn(modifier = modifier) {
-                items(state.juzList) { juz ->
-                    JuzListItem(modifier = Modifier, juz = juz)
-                }
+        state.error?.let { errorMessage ->
+            item {
+                Text("Error: $errorMessage")
             }
         }
     }

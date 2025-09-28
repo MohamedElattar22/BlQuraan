@@ -1,6 +1,6 @@
 package com.iamelattar.blquraan.features.quraan.viewmodel
 
-import com.iamelattar.blquraan.features.quraan.domain.Juz
+import com.iamelattar.blquraan.features.quraan.domain.entities.Juz
 
 data class JuzScreenState(
     val juzList: List<Juz> = emptyList(),

@@ -17,22 +17,19 @@ fun QuraanBySurahScreen(
     viewModel: SurahViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-    when {
-        state.isLoading -> {
-            Text("Loading...")
+    LazyColumn(modifier = modifier) {
+        if (state.isLoading) {
+            item {
+                Text("Loading...")
+            }
         }
-
-        state.error != null -> {
-            Text("Error: ${state.error}")
+        items(state.surahList) { surah ->
+            SurahListItem(surah = surah, modifier = Modifier)
         }
-
-        else -> {
-            LazyColumn(modifier = modifier) {
-                items(state.surahList) { sura ->
-                    SurahListItem(modifier = Modifier, surah = sura)
-                }
+        state.error?.let { errorMessage ->
+            item {
+                Text("Error: $errorMessage")
             }
         }
     }
 }
-

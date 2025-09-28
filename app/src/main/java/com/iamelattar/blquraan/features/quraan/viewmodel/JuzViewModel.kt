@@ -2,7 +2,7 @@ package com.iamelattar.blquraan.features.quraan.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.iamelattar.blquraan.features.quraan.domain.JuzRepository
+import com.iamelattar.blquraan.features.quraan.domain.usecases.GetAllJuzUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class JuzViewModel @Inject constructor(
-    private val juzRepository: JuzRepository
+    private val getAllJuzUseCase: GetAllJuzUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(JuzScreenState())
     val state: StateFlow<JuzScreenState> = _state
@@ -43,24 +43,21 @@ class JuzViewModel @Inject constructor(
     private fun loadJuz() {
         viewModelScope.launch {
             _state.value = _state.value.copy(isLoading = true, error = null)
-            runCatching {
-                val result = juzRepository.getAllJuzs()
-                _state.value = result.fold(
-                    onSuccess = {
-                        _state.value.copy(
-                            isLoading = false,
-                            juzList = it,
-                            error = null
-                        )
-                    },
-                    onFailure = {
-                        _state.value.copy(
-                            isLoading = false,
-                            error = it.message ?: "Unexpected error"
-                        )
-                    }
-                )
-            }
+            val result = getAllJuzUseCase()
+            _state.value = result.fold(
+                onSuccess = {
+                    _state.value.copy(
+                        isLoading = false,
+                        juzList = it, error = null
+                    )
+                },
+                onFailure = {
+                    _state.value.copy(
+                        isLoading = false,
+                        error = it.message ?: "Unexpected error"
+                    )
+                }
+            )
         }
     }
 }

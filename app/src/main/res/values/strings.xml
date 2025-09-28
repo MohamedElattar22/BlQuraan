@@ -6,5 +6,7 @@
     <string name="quraan">القرآن الكريم</string>
     <string name="surah">سورة</string>
     <string name="ayah">آياتها </string>
+    <string name="tab_juz">الأجزاء</string>
+    <string name="tab_surah">السور</string>
 
 </resources>

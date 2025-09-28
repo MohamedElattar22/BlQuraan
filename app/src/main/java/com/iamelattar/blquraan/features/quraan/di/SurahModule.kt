@@ -1,8 +1,8 @@
 package com.iamelattar.blquraan.features.quraan.di
 
 import com.iamelattar.blquraan.features.quraan.utils.AssetReader
-import com.iamelattar.blquraan.features.quraan.data.SurahRepositoryImpl
-import com.iamelattar.blquraan.features.quraan.domain.SurahRepository
+import com.iamelattar.blquraan.features.quraan.data.repositoryImpl.SurahRepositoryImpl
+import com.iamelattar.blquraan.features.quraan.domain.repositories.SurahRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

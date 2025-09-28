@@ -32,25 +32,19 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun QuraanFiltersAppBar(
-    modifier: Modifier = Modifier,
-    tabsList: List<String>,
-    pagerState: PagerState
+    modifier: Modifier = Modifier, tabsList: List<String>, pagerState: PagerState
 ) {
     val coroutineScope = rememberCoroutineScope()
     Column(modifier = modifier) {
         CenterAlignedTopAppBar(
             navigationIcon = {
-
                 Box(
                     modifier = Modifier
                         .size(45.dp)
                         .padding(8.dp)
                         .border(
-                            width = 1.dp,
-                            color = MainColor,
-                            shape = RoundedCornerShape(6.dp)
-                        ),
-                    contentAlignment = Alignment.Center
+                            width = 1.dp, color = MainColor, shape = RoundedCornerShape(6.dp)
+                        ), contentAlignment = Alignment.Center
                 ) {
                     Icon(
                         modifier = Modifier.size(16.dp),
@@ -74,23 +68,18 @@ fun QuraanFiltersAppBar(
             modifier = Modifier.height(48.dp),
         ) {
             tabsList.forEachIndexed { index, title ->
-                Tab(
-                    selected = pagerState.currentPage == index,
-                    onClick = {
-                        coroutineScope.launch {
-                            pagerState.scrollToPage(index)
-                        }
-                    },
-                    text = {
-                        Text(
-                            text = title,
-                            fontSize = 18.sp,
-                            color = if (pagerState.currentPage == index) Color(0xFF187072) else Color.DarkGray,
-                            fontWeight = if (pagerState.currentPage == index) FontWeight.Bold else FontWeight.Medium
-                        )
-
+                Tab(selected = pagerState.currentPage == index, onClick = {
+                    coroutineScope.launch {
+                        pagerState.scrollToPage(index)
                     }
-                )
+                }, text = {
+                    Text(
+                        text = title,
+                        fontSize = 18.sp,
+                        color = if (pagerState.currentPage == index) Color(0xFF187072) else Color.DarkGray,
+                        fontWeight = if (pagerState.currentPage == index) FontWeight.Bold else FontWeight.Medium
+                    )
+                })
             }
         }
     }
