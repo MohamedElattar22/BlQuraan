@@ -81,6 +81,7 @@ dependencies {
     //nav3 library
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.androidx.navigation3.ui)
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
     // gson
     implementation(libs.gson)

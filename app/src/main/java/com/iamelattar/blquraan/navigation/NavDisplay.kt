@@ -22,12 +22,10 @@ fun NavDisplayComp(
         onBack = { backStack.removeLastOrNull() },
         entryProvider = entryProvider {
             entry <HomeScreen>{
-            //    HomeScreen(backStack)
+                HomeScreen()
             }
             entry <QuraanScreenRoute>{
-                QuraanFiltersScreen(
-            //       backStack = backStack
-                )
+                QuraanFiltersScreen()
             }
 
         }

@@ -46,10 +46,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.iamelattar.blquraan.features.home.viewmodel.contracts.PrayerTime
+import com.iamelattar.blquraan.features.home.utils.PrayerTime
 import com.iamelattar.blquraan.ui.theme.BlQuraanTheme
 import kotlinx.coroutines.delay
-
 
 
 @Composable
@@ -76,7 +75,7 @@ fun PrayerTimesTimeline(
         Column(
             modifier = modifier
                 .fillMaxWidth()
-                .padding(horizontal =  25.dp)
+                .padding(horizontal = 25.dp)
 
         ) {
             prayerTimes.forEachIndexed { index, prayer ->
@@ -175,7 +174,7 @@ private fun TimelineIndicator(
                 drawLine(
                     color = if (isPassed) passedColor else inactiveColor,
                     start = Offset(centerX, 0f),
-                    end = Offset(centerX, size.height /2 * topProgress),
+                    end = Offset(centerX, size.height / 2 * topProgress),
                     strokeWidth = lineWidth
                 )
             }
@@ -239,14 +238,12 @@ private fun PrayerContent(
 ) {
     Card(
         shape = RoundedCornerShape(7.dp),
-        modifier = modifier.height(38.dp),
         colors = CardDefaults.cardColors(
             containerColor = if (prayer.isActive)
                 Color(0xFF187072)
             else
-               Color(0xffE7EFF2)
+                Color(0xffE7EFF2)
         ),
-
     ) {
         Row(
             modifier = Modifier
@@ -255,11 +252,8 @@ private fun PrayerContent(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-
             Column {
-                Row (
-
-                ){
+                Row {
                     Text(
                         text = prayer.icon,
                         fontSize = 13.sp
@@ -273,43 +267,20 @@ private fun PrayerContent(
                         textAlign = TextAlign.Start
                     )
                 }
-
             }
-
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-
                 Text(
                     text = prayer.time,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Medium,
                     color = if (prayer.isActive) Color.White else Color(0xFF1A7E5C)
                 )
-
-                Spacer(modifier = Modifier.width(8.dp))
-
+                Spacer(Modifier.width(8.dp))
             }
         }
     }
-
-
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun PrayerTimesTimelinePreview() {
-    BlQuraanTheme {
-        val samplePrayerTimes = listOf(
-            PrayerTime("الفجر", "Fajr", "5:15", "🌙", isPassed = true),
-            PrayerTime("الشروق", "Sunrise", "6:44", "🌅", isPassed = true),
-            PrayerTime("الظهر", "Dhuhr", "12:53", "☀️", isPassed = true),
-            PrayerTime("العصر", "Asr", "4:22", "☀️" ,  isActive = true),
-            PrayerTime("المغرب", "Maghrib", "7:01", "🌅"),
-            PrayerTime("العشاء", "Isha", "8:20", "🌙")
-        )
-
-        PrayerTimesTimeline(prayerTimes = samplePrayerTimes)
-    }
-}

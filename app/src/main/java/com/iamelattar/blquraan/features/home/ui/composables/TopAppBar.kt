@@ -37,9 +37,13 @@ import com.iamelattar.blquraan.R
 import com.iamelattar.blquraan.ui.theme.BlQuraanTheme
 
 @Composable
-fun TopAppBar(modifier: Modifier = Modifier) {
-
-
+fun TopAppBar(
+    hijriDate: String,
+    hoursUntilNextPrayer: String ,
+    minutesUntilNextPrayer: String ,
+    nextPrayerName: String,
+    modifier: Modifier = Modifier
+    ) {
     Box(
         modifier = modifier
             .shadow(
@@ -58,10 +62,7 @@ fun TopAppBar(modifier: Modifier = Modifier) {
                     bottomStart = 30.dp
                 )
             )
-
     ) {
-
-
         Image(
             modifier = Modifier
                 .clip(
@@ -75,57 +76,42 @@ fun TopAppBar(modifier: Modifier = Modifier) {
             contentScale = ContentScale.Crop,
             contentDescription = ""
         )
-
         Row(
             modifier = Modifier
                 .padding(15.dp)
                 .align(Alignment.BottomStart),
         ) {
             Column(
-                modifier = Modifier.weight(1f)
-            ) {
-                Spacer(Modifier.height(15.dp))
-                Image(
-
-                    imageVector = ImageVector.vectorResource(R.drawable.logo),
-                    contentDescription = "sa"
-                )
-            }
-
-            Column(
-                horizontalAlignment = Alignment.End,
+                horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.spacedBy(3.dp)
-
             ) {
                 Text(
                     text = stringResource(R.string.welcome_back),
                     color = Color(0xff187072),
                     style = MaterialTheme.typography.headlineMedium
                 )
-
                 IconText(
-                    text = "الثلاثاء , 4 صفر 1446",
+                    text = hijriDate,
                     iconResourceId = R.drawable.calender
                 )
-
                 IconText(
-                    text = "صلاة العصر بعد 3 ساعات و 27 دقيقة",
+                    text = "صلاة ${nextPrayerName} بعد ${hoursUntilNextPrayer} ساعات و ${minutesUntilNextPrayer} دقيقة",
                     iconResourceId = R.drawable.prayer
                 )
             }
+            Column(
+                modifier = Modifier.weight(1f),
+                horizontalAlignment = Alignment.End,
+            ) {
+                Spacer(Modifier.height(15.dp))
+                Image(
+                    imageVector = ImageVector.vectorResource(R.drawable.logo),
+                    contentDescription = "sa"
+                )
 
+            }
         }
-
-
     }
 }
 
 
-@Preview(showSystemUi = true)
-@Composable
-private fun TopAppBarPreview() {
-    BlQuraanTheme {
-        TopAppBar()
-    }
-
-}
