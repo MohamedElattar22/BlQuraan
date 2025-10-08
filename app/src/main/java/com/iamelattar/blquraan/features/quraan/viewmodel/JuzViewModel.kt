@@ -7,6 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -39,23 +40,25 @@ class JuzViewModel @Inject constructor(
             initFlow.emit(action)
         }
     }
-
     private fun loadJuz() {
         viewModelScope.launch {
-            _state.value = _state.value.copy(isLoading = true, error = null)
-            val result = getAllJuzUseCase()
-            _state.value = result.fold(
-                onSuccess = {
-                    _state.value.copy(
-                        isLoading = false,
-                        juzList = it, error = null
-                    )
+            _state.update { it.copy(isLoading = true, error = null) }
+            getAllJuzUseCase().fold(
+                onSuccess = { juzList ->
+                    _state.update {
+                        it.copy(
+                            isLoading = false,
+                            juzList = juzList, error = null
+                        )
+                    }
                 },
-                onFailure = {
-                    _state.value.copy(
-                        isLoading = false,
-                        error = it.message ?: "Unexpected error"
-                    )
+                onFailure = { throwable ->
+                    _state.update {
+                        it.copy(
+                            isLoading = false,
+                            error = throwable.message ?: "Unexpected error"
+                        )
+                    }
                 }
             )
         }

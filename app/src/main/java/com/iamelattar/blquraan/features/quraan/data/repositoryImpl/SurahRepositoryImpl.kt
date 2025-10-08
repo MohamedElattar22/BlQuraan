@@ -10,7 +10,6 @@ import kotlinx.serialization.builtins.ListSerializer
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
 class SurahRepositoryImpl @Inject constructor(
     private val assetManager: AssetManager
 ) : SurahRepository {

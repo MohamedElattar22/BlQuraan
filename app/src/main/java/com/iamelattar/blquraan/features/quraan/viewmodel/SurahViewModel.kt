@@ -7,6 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -43,20 +44,23 @@ class SurahViewModel @Inject constructor(
     }
 
     private fun loadSurahes() = viewModelScope.launch {
-        _state.value = _state.value.copy(isLoading = true, error = null)
-        val result = getAllSurahesUseCase()
-        _state.value = result.fold(
-            onSuccess = {
-                _state.value.copy(
-                    isLoading = false,
-                    surahList = it, error = null
-                )
+        _state.update { it.copy(isLoading = true, error = null) }
+        getAllSurahesUseCase().fold(
+            onSuccess = { suraList ->
+                _state.update {
+                    it.copy(
+                        isLoading = false,
+                        surahList = suraList, error = null
+                    )
+                }
             },
-            onFailure = {
-                _state.value.copy(
-                    isLoading = false,
-                    error = it.message ?: "Unexpected error"
-                )
+            onFailure = { throwable ->
+                _state.update {
+                    it.copy(
+                        isLoading = false,
+                        error = throwable.message ?: "Unexpected error"
+                    )
+                }
             }
         )
     }

@@ -8,7 +8,6 @@ import com.iamelattar.blquraan.features.quraan.utils.JsonHelper
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
 class JuzRepositoryImpl @Inject constructor(
     private val assetManager: AssetManager
 ) : JuzRepository {
