@@ -4,6 +4,10 @@
     <string name="features">المميزات</string>
     <string name="prayer_times">مواقيت الصلاة</string>
     <string name="quraan">القرآن الكريم</string>
+    <string name="surah">سورة</string>
+    <string name="ayah">آياتها </string>
+    <string name="tab_juz">الأجزاء</string>
+    <string name="tab_surah">السور</string>
     <string name="aya_of_the_day">آية اليوم</string>
     <string name="soura"> سورة</string>
     <string name="copy_aya">نسخ الآية</string>
