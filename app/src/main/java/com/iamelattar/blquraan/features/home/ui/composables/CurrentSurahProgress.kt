@@ -5,8 +5,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -23,25 +25,29 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.iamelattar.blquraan.R
 import com.iamelattar.blquraan.ui.theme.BlQuraanTheme
 
 @Composable
 fun CurrentSurahProgress(
+    souraName: String,
+    pageNumber: String,
     modifier: Modifier = Modifier,
-    onContinueClick:()->Unit,
+    onClick: () -> Unit = {},
 ) {
-    Box (
+    Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(120.dp)
-           .clip(
-                shape = RoundedCornerShape(10.dp)
-            )
-    ){
+            .height(IntrinsicSize.Min)
+            .clip(RoundedCornerShape(10.dp))
+    ) {
         Image(
             modifier = Modifier
                 .fillMaxSize(),
@@ -56,66 +62,61 @@ fun CurrentSurahProgress(
             horizontalAlignment = Alignment.Start
         ) {
             Text(
-                "متابعة القراءة حيث توقفت",
+                text = stringResource(R.string.continue_reading),
                 color = Color.White
             )
             Row {
                 Text(
-                    "سورة البقرة",
-                    color = Color(0xff02B9BD)
+                    text = stringResource(R.string.stopped_at),
+                    color = Color(0xB3FFFFFF),
+                    fontWeight = FontWeight.ExtraLight,
+                    fontSize = 14.sp,
+                    modifier = Modifier.alignByBaseline()
                 )
-
-                Spacer(modifier = Modifier.width(5.dp))
-
+                Spacer(Modifier.width(5.dp))
                 Text(
-                    "توقفت عند",
-                    fontWeight = FontWeight.Thin,
-                    color = Color.White
+                    text = buildString {
+                        append(stringResource(R.string.soura))
+                        append("")
+                        append(souraName)
+                    },
+                    color = Color(0xff02B9BD),
+                    modifier = Modifier.alignByBaseline()
                 )
-
             }
             Row {
                 Text(
-                    "20",
-                    color = Color(0xff02B9BD)
+                    text = stringResource(R.string.page_number),
+                    color = Color(0xB3FFFFFF),
+                    fontWeight = FontWeight.ExtraLight,
+                    fontSize = 14.sp,
+                    modifier = Modifier.alignByBaseline()
                 )
-
-                Spacer(modifier = Modifier.width(5.dp))
-
+                Spacer(Modifier.width(5.dp))
                 Text(
-                    "صفحة رقم",
-                    fontWeight = FontWeight.Thin,
-                    color = Color.White
+                    pageNumber,
+                    color = Color(0xff02B9BD),
+                    modifier = Modifier.alignByBaseline()
                 )
-
             }
-            Spacer(modifier = Modifier.height(5.dp))
+            Spacer(Modifier.height(5.dp))
             Box(
                 modifier = Modifier
                     .width(115.dp)
-                    .height(26.dp)
                     .background(
                         color = Color.White,
                         shape = RoundedCornerShape(6.dp)
                     )
-                    .clickable{
-                        onContinueClick()
-                }
-            ){
+                    .clickable { onClick }
+                    .padding(vertical = 5.dp)
+            ) {
                 Text(
                     modifier = Modifier.align(Alignment.Center),
-                  text =   "المتابعة",
+                    text = stringResource(R.string.follow_up),
                     style = MaterialTheme.typography.labelSmall
                 )
-
             }
-
         }
-
-
-
     }
-
-
 }
 

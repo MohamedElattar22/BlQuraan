@@ -7,57 +7,53 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.iamelattar.blquraan.R
-import com.iamelattar.blquraan.ui.theme.BlQuraanTheme
+import androidx.compose.ui.unit.sp
+import com.iamelattar.blquraan.features.home.utils.FeatureEnum
+import androidx.compose.foundation.lazy.items
+
 
 @Composable
-fun FeaturesRow(
-    modifier: Modifier = Modifier,
-    onClick: () -> Unit ={}
-) {
-    Row(
+fun FeaturesRow(onFeatureClick: (Int) -> Unit, modifier: Modifier = Modifier) {
+    val features = remember { FeatureEnum.getAllFeatures() }
+
+    LazyRow(
         modifier = modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(10.dp)
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        FeatureButton(
-            onClick = {
-                onClick()
-            },
-            featureName = "المصحف",
-            featureIconRes = R.drawable.quran
-        )
+        items(features) { feature ->
+            FeatureButton(
+                featureName = stringResource(feature.nameRes),
+                featureIconRes = feature.resourceId,
+                onClick = { onFeatureClick(feature.nameRes) }
+            )
+        }
     }
-
 }
+
 
 @Composable
 fun FeatureButton(
-    modifier: Modifier = Modifier,
-    onClick : ()-> Unit = {},
     featureName: String,
-    featureIconRes: Int
+    featureIconRes: Int,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
-
     Column(
-        modifier = modifier.clickable{
-            onClick()
-        },
+        modifier = modifier.clickable { onClick() },
         verticalArrangement = Arrangement.spacedBy(2.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -82,12 +78,10 @@ fun FeatureButton(
                 contentDescription = ""
             )
         }
-
         Text(
             text = featureName,
-            color = Color(0xB3535353)
+            fontSize = 13.sp,
+            color = Color(0xB3535353),
         )
-
     }
-
 }
