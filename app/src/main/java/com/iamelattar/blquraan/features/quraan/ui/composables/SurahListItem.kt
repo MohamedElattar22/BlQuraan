@@ -8,6 +8,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,7 +24,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iamelattar.blquraan.R
 import com.iamelattar.blquraan.features.quraan.domain.entities.Surah
-import com.iamelattar.blquraan.ui.theme.SecondaryColor
 
 @Composable
 fun SurahListItem(
@@ -35,7 +35,7 @@ fun SurahListItem(
             .padding(5.dp)
             .clip(RoundedCornerShape(10.dp)),
         colors = ListItemDefaults.colors(
-            containerColor = SecondaryColor
+            containerColor = MaterialTheme.colorScheme.secondaryContainer
         ),
         headlineContent = {
             Text(
