@@ -2,7 +2,6 @@ package com.iamelattar.blquraan.features.quraan.ui.screen
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -18,18 +17,8 @@ fun QuraanByJuzScreen(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     LazyColumn(modifier = modifier) {
-        if (state.isLoading) {
-            item {
-                Text("Loading...")
-            }
-        }
         items(state.juzList) { juz ->
             JuzListItem(juz = juz, modifier = Modifier)
-        }
-        state.error?.let { errorMessage ->
-            item {
-                Text("Error: $errorMessage")
-            }
         }
     }
 }

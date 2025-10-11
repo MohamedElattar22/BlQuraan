@@ -7,7 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
-import com.iamelattar.blquraan.features.home.ui.screen.HomeScreen
+import androidx.navigation3.runtime.NavBackStack
 import com.iamelattar.blquraan.features.quraan.ui.screen.QuraanFiltersScreen
 import com.iamelattar.blquraan.ui.theme.BlQuraanTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,27 +19,12 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BlQuraanTheme {
+                val navBackStack = NavBackStack()
                 CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
-                      HomeScreen()
+                    QuraanFiltersScreen()
                 }
             }
         }
     }
-    override fun onStart() {
-        super.onStart()
-    }
-
-    override fun onResume() {
-        super.onResume()
-    }
-
-    override fun onPause() {
-        super.onPause()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
 }
 

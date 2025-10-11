@@ -3,12 +3,10 @@ package com.iamelattar.blquraan.features.quraan.data.repositoryImpl
 import com.iamelattar.blquraan.features.quraan.domain.entities.Surah
 import com.iamelattar.blquraan.features.quraan.domain.repositories.SurahRepository
 import com.iamelattar.blquraan.features.quraan.utils.AssetManager
-import com.iamelattar.blquraan.features.quraan.utils.AssetReader
-import com.iamelattar.blquraan.features.quraan.utils.Constants
 import com.iamelattar.blquraan.features.quraan.utils.JsonHelper
+import com.iamelattar.blquraan.utils.Constants
 import kotlinx.serialization.builtins.ListSerializer
 import javax.inject.Inject
-import javax.inject.Singleton
 
 class SurahRepositoryImpl @Inject constructor(
     private val assetManager: AssetManager

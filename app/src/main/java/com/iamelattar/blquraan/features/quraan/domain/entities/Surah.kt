@@ -1,5 +1,6 @@
 package com.iamelattar.blquraan.features.quraan.domain.entities
 
+import com.iamelattar.blquraan.utils.Constants
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -15,4 +16,10 @@ data class Surah(
     val place: String,
     @SerialName("startPage")
     val startPage: Int,
-)
+){
+    val surahPlace : String = when(place){
+        Constants.MAKKAH -> "مكية"
+        Constants.MADINAH -> "مدنية"
+        else -> ""
+    }
+}

@@ -3,10 +3,9 @@ package com.iamelattar.blquraan.features.quraan.data.repositoryImpl
 import com.iamelattar.blquraan.features.quraan.domain.entities.Juz
 import com.iamelattar.blquraan.features.quraan.domain.repositories.JuzRepository
 import com.iamelattar.blquraan.features.quraan.utils.AssetManager
-import com.iamelattar.blquraan.features.quraan.utils.Constants
 import com.iamelattar.blquraan.features.quraan.utils.JsonHelper
+import com.iamelattar.blquraan.utils.Constants
 import javax.inject.Inject
-import javax.inject.Singleton
 
 class JuzRepositoryImpl @Inject constructor(
     private val assetManager: AssetManager

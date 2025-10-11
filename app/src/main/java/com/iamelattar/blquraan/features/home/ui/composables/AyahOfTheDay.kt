@@ -6,12 +6,12 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,11 +22,11 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.unit.dp
-import com.iamelattar.blquraan.R
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.iamelattar.blquraan.R
 
 @Composable
 fun AyahOfTheDay(
@@ -38,7 +38,7 @@ fun AyahOfTheDay(
         modifier = modifier
             .fillMaxWidth()
             .background(
-                color = Color(0xffE7EFF2),
+                color = MaterialTheme.colorScheme.secondaryContainer,
                 shape = RoundedCornerShape(14.dp)
             )
             .border(
@@ -76,30 +76,30 @@ fun AyahOfTheDay(
             ),
             lineHeight = 24.sp,
             textAlign = TextAlign.Center,
-            fontSize = 18.sp
+            fontSize = 18.sp,
+            color = MaterialTheme.colorScheme.onSecondaryContainer
         )
         OutlinedButton(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(1f),
+                .padding(12.dp),
             onClick = onClick,
             border = BorderStroke(
                 width = 1.dp,
                 color = Color(0xff398E71)
             ),
-            shape = RoundedCornerShape(10.dp)
+            shape = RoundedCornerShape(10.dp),
         ) {
             Text(
                 text = stringResource(R.string.copy_aya),
                 color = Color(0xff398E71),
-                modifier = Modifier.padding(end = 5.dp)
+                style = MaterialTheme.typography.bodyMedium
             )
             Icon(
                 imageVector = ImageVector.vectorResource(R.drawable.solar_copy),
                 contentDescription = "copy",
                 tint = Color(0xff398E71),
-                modifier = Modifier
-                    .size(16.dp)
+                modifier = Modifier.size(16.dp)
             )
         }
     }
