@@ -2,6 +2,7 @@ package com.iamelattar.blquraan.features.home.ui.composables
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,17 +12,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
@@ -30,39 +26,43 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.iamelattar.blquraan.R
-import com.iamelattar.blquraan.ui.theme.BlQuraanTheme
 
 @Composable
 fun TopAppBar(
     hijriDate: String,
-    hoursUntilNextPrayer: String ,
-    minutesUntilNextPrayer: String ,
+    hoursUntilNextPrayer: String,
+    minutesUntilNextPrayer: String,
     nextPrayerName: String,
     modifier: Modifier = Modifier
-    ) {
+) {
     Box(
         modifier = modifier
+            .fillMaxWidth()
             .shadow(
-                elevation = 1.dp, shape = RoundedCornerShape(
+                elevation = 12.dp,
+                shape = RoundedCornerShape(
                     bottomEnd = 30.dp,
                     bottomStart = 30.dp
                 )
             )
-            .padding(bottom = 3.dp)
-            .fillMaxWidth()
             .height(130.dp)
             .background(
-                color = Color.Transparent,
+                color = MaterialTheme.colorScheme.background,
+                shape = RoundedCornerShape(
+                    bottomEnd = 30.dp,
+                    bottomStart = 30.dp
+                )
+            )
+            .clip(
                 shape = RoundedCornerShape(
                     bottomEnd = 30.dp,
                     bottomStart = 30.dp
                 )
             )
     ) {
+        val isDarkTheme = isSystemInDarkTheme()
         Image(
             modifier = Modifier
                 .clip(
@@ -72,7 +72,9 @@ fun TopAppBar(
                     )
                 )
                 .fillMaxSize(),
-            painter = painterResource(R.drawable.islamic_bg),
+            painter = if (!isDarkTheme) painterResource(R.drawable.islamic_bg) else painterResource(
+                R.drawable.background_dark
+            ),
             contentScale = ContentScale.Crop,
             contentDescription = ""
         )
@@ -95,7 +97,7 @@ fun TopAppBar(
                     iconResourceId = R.drawable.calender
                 )
                 IconText(
-                    text = "صلاة ${nextPrayerName} بعد ${hoursUntilNextPrayer} ساعات و ${minutesUntilNextPrayer} دقيقة",
+                    text = "صلاة $nextPrayerName بعد ${hoursUntilNextPrayer} ساعات و ${minutesUntilNextPrayer} دقيقة",
                     iconResourceId = R.drawable.prayer
                 )
             }
@@ -108,7 +110,6 @@ fun TopAppBar(
                     imageVector = ImageVector.vectorResource(R.drawable.logo),
                     contentDescription = "sa"
                 )
-
             }
         }
     }

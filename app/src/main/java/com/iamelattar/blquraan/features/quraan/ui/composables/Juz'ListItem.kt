@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,17 +25,18 @@ fun JuzListItem(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(5.dp)
+            .padding(horizontal = 16.dp, vertical = 6.dp)
             .clip(RoundedCornerShape(10.dp))
-            .background(Color(0xFFE7EAEA))
-            .padding(12.dp),
+            .background(MaterialTheme.colorScheme.secondaryContainer),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {
         Text(
+            modifier = Modifier.padding(12.dp),
             text = juz.name,
             color = Color(0xff187072),
-            fontSize = 14.sp
+            fontSize = 14.sp,
+            style = MaterialTheme.typography.bodyMedium
         )
     }
 }

@@ -8,6 +8,7 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,15 +16,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -42,12 +40,10 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iamelattar.blquraan.features.home.utils.PrayerTime
-import com.iamelattar.blquraan.ui.theme.BlQuraanTheme
 import kotlinx.coroutines.delay
 
 
@@ -236,49 +232,47 @@ private fun PrayerContent(
     prayer: PrayerTime,
     modifier: Modifier = Modifier
 ) {
-    Card(
-        shape = RoundedCornerShape(7.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = if (prayer.isActive)
-                Color(0xFF187072)
-            else
-                Color(0xffE7EFF2)
-        ),
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .background(
+                color = if (prayer.isActive)
+                    MaterialTheme.colorScheme.primary
+                else
+                    MaterialTheme.colorScheme.secondaryContainer,
+                shape = RoundedCornerShape(8.dp)
+            )
+            .clip(RoundedCornerShape(7.dp))
+            .padding(8.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ) {
+        Column {
+            Row {
+                Text(
+                    text = prayer.icon,
+                    fontSize = 13.sp
+                )
+                Spacer(modifier = Modifier.width(5.dp))
+                Text(
+                    text = prayer.nameArabic,
+                    fontSize = 16.sp,
+                    fontWeight = if (prayer.isActive) FontWeight.Bold else FontWeight.Medium,
+                    color = if (prayer.isActive) Color.White else Color(0xFF1A7E5C),
+                    textAlign = TextAlign.Start
+                )
+            }
+        }
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column {
-                Row {
-                    Text(
-                        text = prayer.icon,
-                        fontSize = 13.sp
-                    )
-                    Spacer(modifier = Modifier.width(5.dp))
-                    Text(
-                        text = prayer.nameArabic,
-                        fontSize = 16.sp,
-                        fontWeight = if (prayer.isActive) FontWeight.Bold else FontWeight.Medium,
-                        color = if (prayer.isActive) Color.White else Color(0xFF1A7E5C),
-                        textAlign = TextAlign.Start
-                    )
-                }
-            }
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = prayer.time,
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Medium,
-                    color = if (prayer.isActive) Color.White else Color(0xFF1A7E5C)
-                )
-                Spacer(Modifier.width(8.dp))
-            }
+            Text(
+                text = prayer.time,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Medium,
+                color = if (prayer.isActive) Color.White else Color(0xFF1A7E5C)
+            )
+            Spacer(Modifier.width(8.dp))
         }
     }
 }
