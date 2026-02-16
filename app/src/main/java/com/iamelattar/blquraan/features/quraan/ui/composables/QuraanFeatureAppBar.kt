@@ -11,6 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
@@ -26,7 +27,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iamelattar.blquraan.R
-import com.iamelattar.blquraan.ui.theme.MainColor
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -43,13 +43,15 @@ fun QuraanFiltersAppBar(
                         .size(45.dp)
                         .padding(8.dp)
                         .border(
-                            width = 1.dp, color = MainColor, shape = RoundedCornerShape(6.dp)
+                            width = 1.dp,
+                            color = MaterialTheme.colorScheme.primary,
+                            shape = RoundedCornerShape(6.dp)
                         ), contentAlignment = Alignment.Center
                 ) {
                     Icon(
                         modifier = Modifier.size(16.dp),
                         imageVector = ImageVector.vectorResource(R.drawable.ic_arrow_back),
-                        tint = MainColor,
+                        tint = MaterialTheme.colorScheme.primary,
                         contentDescription = "",
                     )
                 }
@@ -84,4 +86,3 @@ fun QuraanFiltersAppBar(
         }
     }
 }
-

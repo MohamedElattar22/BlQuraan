@@ -79,13 +79,13 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
 
     //nav3 library
-    implementation(libs.androidx.navigation3.runtime)
-    implementation(libs.androidx.navigation3.ui)
-    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    implementation(libs.androidx.navigation.compose)
+    implementation("androidx.hilt:hilt-navigation-compose:1.3.0")
 
     // gson
     implementation(libs.gson)
     // kotlin serialization
     implementation(libs.kotlinx.serialization.json)
 
+    implementation(libs.androidx.core.splashscreen)
 }
